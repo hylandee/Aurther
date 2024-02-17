@@ -6,7 +6,7 @@ plugins {
     signing
 }
 
-group = "hylandee"
+group = "io.github.hylandee"
 version = "1.0"
 
 repositories {
