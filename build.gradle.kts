@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.serialization") version "1.9.22"
+    kotlin("jvm") version "2.0.21"
+    kotlin("plugin.serialization") version "2.0.21"
     `java-library`
     `maven-publish`
     signing
@@ -27,10 +27,25 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("Aurther") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "Aurther"
+            url = uri(layout.buildDirectory.dir("repo"))
+        }
+    }
 }
